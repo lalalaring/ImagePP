@@ -43,7 +43,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		pixelFormat = ChoosePixelFormat(hdc, &pfd);
 		SetPixelFormat(hdc, pixelFormat, &pfd);
 		ipp = new ImagePP();
-		im=ipp->CreateFromFile("1.tga");
+		im=ipp->CreateFromFile("lenna.tga");
 		break;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);

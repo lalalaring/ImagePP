@@ -17,6 +17,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libbmp", "3rdparty\libbmp\l
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HCBase", "HCBase\HCBase.vcxproj", "{CFBC41CE-8929-4784-A54E-BA1ABA661C29}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{3D28BE61-7F4E-4389-A063-553F163632DD}"
+	ProjectSection(SolutionItems) = preProject
+		bin\lenna.bmp = bin\lenna.bmp
+		bin\lenna.jpg = bin\lenna.jpg
+		bin\lenna.png = bin\lenna.png
+		bin\lenna.tga = bin\lenna.tga
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
