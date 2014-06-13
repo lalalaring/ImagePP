@@ -6,7 +6,7 @@
 inline FILE * fileOpen(const char * fileName, const char * mode)
 {
 	assert(fileName != NULL);
-#if NV_CC_MSVC && _MSC_VER >= 1400
+#if CC_MSVC && _MSC_VER >= 1400
 	FILE * fp;
 	if (fopen_s(&fp, fileName, mode) == 0) {
 		return fp;
@@ -32,7 +32,7 @@ public:
 	virtual ~HCStdStream()
 	{
 		if (m_fp != NULL && m_autoclose) {
-#if NV_OS_WIN32
+#if OS_WIN32
 			_fclose_nolock(m_fp);
 #else
 			fclose(m_fp);
@@ -47,7 +47,7 @@ public:
 	{
 		assert(m_fp != NULL);
 		assert(pos <= size());
-#if NV_OS_WIN32
+#if OS_WIN32
 		_fseek_nolock(m_fp, pos, SEEK_SET);
 #else
 		fseek(m_fp, pos, SEEK_SET);
@@ -57,7 +57,7 @@ public:
 	virtual uint tell() const
 	{
 		assert(m_fp != NULL);
-#if NV_OS_WIN32
+#if OS_WIN32
 		return _ftell_nolock(m_fp);
 #else
 		return (uint)ftell(m_fp);
@@ -67,7 +67,7 @@ public:
 	virtual uint size() const
 	{
 		assert(m_fp != NULL);
-#if NV_OS_WIN32
+#if OS_WIN32
 		uint pos = _ftell_nolock(m_fp);
 		_fseek_nolock(m_fp, 0, SEEK_END);
 		uint end = _ftell_nolock(m_fp);
@@ -99,7 +99,7 @@ public:
 	{
 		assert(m_fp != NULL);
 		//return feof( m_fp ) != 0;
-#if NV_OS_WIN32
+#if OS_WIN32
 		uint pos = _ftell_nolock(m_fp);
 		_fseek_nolock(m_fp, 0, SEEK_END);
 		uint end = _ftell_nolock(m_fp);
@@ -128,7 +128,7 @@ protected:
 /// Standard output stream.
 class HCStdOutputStream : public HCStdStream
 {
-	//NV_FORBID_COPY(StdOutputStream);
+
 private:
 	HCStdOutputStream(const HCStdOutputStream &);
 	HCStdOutputStream &operator=(const HCStdOutputStream &);
@@ -149,11 +149,11 @@ public:
 	{
 		assert(data != NULL);
 		assert(m_fp != NULL);
-#if NV_OS_WIN32
+#if OS_WIN32
 		return (uint)_fwrite_nolock(data, 1, len, m_fp);
-#elif NV_OS_LINUX
+#elif OS_LINUX
 		return (uint)fwrite_unlocked(data, 1, len, m_fp);
-#elif NV_OS_DARWIN
+#elif OS_DARWIN
 		// @@ No error checking, always returns len.
 		for (uint i = 0; i < len; i++) {
 			putc_unlocked(((char *)data)[i], m_fp);
@@ -201,11 +201,11 @@ public:
 	{
 		assert(data != NULL);
 		assert(m_fp != NULL);
-#if NV_OS_WIN32
+#if OS_WIN32
 		return (uint)_fread_nolock(data, 1, len, m_fp);
-#elif NV_OS_LINUX
+#elif OS_LINUX
 		return (uint)fread_unlocked(data, 1, len, m_fp);
-#elif NV_OS_DARWIN
+#elif OS_DARWIN
 		// @@ No error checking, always returns len.
 		for (uint i = 0; i < len; i++) {
 			((char *)data)[i] = getc_unlocked(m_fp);

@@ -10,23 +10,7 @@ enum IMAGEPIEXLFORMAT
 	FORMAT_B8G8R8A,
 	FORMAT_B8G8R8A8,
 };
-//class Image
-//{
-//public:
-//	void* GetData(){ return data; }
-//	int GetWidth(){ return width; }
-//	int GetHeight(){ return height; }
-//	int GetDepth(){ return depth; }
-//
-//
-//protected:
-//private:
-//
-//	int width;
-//	int height;
-//	int depth;
-//	void* data;
-//};
+
 class ImagePP
 {
 public:
