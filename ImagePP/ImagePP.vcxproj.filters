@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Decoder">
+      <UniqueIdentifier>{a3ad025a-4811-49d6-a5b2-902fdb473534}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ImagePP.h" />
+    <ClInclude Include="DecoderPng.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="DecoderJpg.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="DecoderTga.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="TgaHeader.h" />
+    <ClInclude Include="ImagePPconfig.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ImagePP.cpp" />
+    <ClCompile Include="DecoderPng.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="DecoderJpg.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="DecoderTga.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Image.cpp" />
+  </ItemGroup>
+</Project>
