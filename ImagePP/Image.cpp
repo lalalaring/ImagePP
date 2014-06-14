@@ -2,6 +2,7 @@
 #include "Image.h"
 #include "DecoderTga.h"
 #include "DecoderPng.h"
+#include "DecoderJpg.h"
 #include "HCStdStream.h"
 
 
@@ -54,7 +55,11 @@ bool Image::load(const char * name)
 	
 		img.reset(DecoderTga::Read(HCStdInputStream(name)));
 	}
+	if (img.get() == NULL)
+	{
 
+		img.reset(DecoderJpg::Read(HCStdInputStream(name)));
+	}
 
 	if (img.get() == NULL)
 	{

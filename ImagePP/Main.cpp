@@ -43,7 +43,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		pixelFormat = ChoosePixelFormat(hdc, &pfd);
 		SetPixelFormat(hdc, pixelFormat, &pfd);
 		ipp = new ImagePP();
-		im=ipp->CreateFromFile("lenna.tga");
+		im=ipp->CreateFromFile("lenna.jpg");
 		break;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
@@ -111,7 +111,6 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
-
 
 
 	// 主消息循环: 

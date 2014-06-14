@@ -10,22 +10,19 @@
     <ClInclude Include="DecoderPng.h">
       <Filter>Decoder</Filter>
     </ClInclude>
-    <ClInclude Include="DecoderJpg.h">
-      <Filter>Decoder</Filter>
-    </ClInclude>
     <ClInclude Include="DecoderTga.h">
       <Filter>Decoder</Filter>
     </ClInclude>
     <ClInclude Include="Image.h" />
     <ClInclude Include="TgaHeader.h" />
     <ClInclude Include="ImagePPconfig.h" />
+    <ClInclude Include="DecoderJpg.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImagePP.cpp" />
     <ClCompile Include="DecoderPng.cpp">
-      <Filter>Decoder</Filter>
-    </ClCompile>
-    <ClCompile Include="DecoderJpg.cpp">
       <Filter>Decoder</Filter>
     </ClCompile>
     <ClCompile Include="DecoderTga.cpp">
@@ -33,5 +30,8 @@
     </ClCompile>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="DecoderJpg.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

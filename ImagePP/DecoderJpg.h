@@ -1,8 +1,8 @@
 #pragma once
+#include "Image.h"
 class DecoderJpg
 {
 public:
-	DecoderJpg();
-	~DecoderJpg();
+	static Image* Read(HCStream & s);
 };
 
