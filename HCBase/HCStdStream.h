@@ -16,8 +16,7 @@ inline FILE * fileOpen(const char * fileName, const char * mode)
 	return fopen(fileName, mode);
 #endif
 }
-class HCStdStream :
-	public HCStream
+class HCStdStream :public HCStream
 {
 
 private: 

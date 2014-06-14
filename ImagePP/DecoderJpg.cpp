@@ -40,8 +40,7 @@ Image* DecoderJpg::Read(HCStream & s)
 	//nvCheck(!s.isError());
 
 	// Read the entire file.
-	//std::array<uint8,0> byte_array;
-	//byte_array.resize(s.size());
+
 	unsigned char* buff = new unsigned char[s.size()];
 	s.serialize(buff, s.size());
 

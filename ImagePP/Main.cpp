@@ -29,7 +29,7 @@ PIXELFORMATDESCRIPTOR pfd =
 Image* im = NULL;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	int wmId, wmEvent;
+
 	PAINTSTRUCT ps;
 	HDC hdc;
 	HDC hMemDC;
@@ -76,7 +76,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
 	// TODO:  在此放置代码。
 	MSG msg;
-	HACCEL hAccelTable;
+
 
 	// 初始化全局字符串
 	//LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
