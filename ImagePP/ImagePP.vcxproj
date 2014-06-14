@@ -79,6 +79,7 @@
     <ClInclude Include="DecoderJpg.h" />
     <ClInclude Include="DecoderPng.h" />
     <ClInclude Include="DecoderTga.h" />
+    <ClInclude Include="DecoderTiff.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImagePP.h" />
     <ClInclude Include="ImagePPconfig.h" />
@@ -88,6 +89,7 @@
     <ClCompile Include="DecoderJpg.cpp" />
     <ClCompile Include="DecoderPng.cpp" />
     <ClCompile Include="DecoderTga.cpp" />
+    <ClCompile Include="DecoderTiff.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImagePP.cpp" />
     <ClCompile Include="Main.cpp" />

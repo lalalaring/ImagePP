@@ -19,6 +19,9 @@
     <ClInclude Include="DecoderJpg.h">
       <Filter>Decoder</Filter>
     </ClInclude>
+    <ClInclude Include="DecoderTiff.h">
+      <Filter>Decoder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImagePP.cpp" />
@@ -31,6 +34,9 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="DecoderJpg.cpp">
+      <Filter>Decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="DecoderTiff.cpp">
       <Filter>Decoder</Filter>
     </ClCompile>
   </ItemGroup>
