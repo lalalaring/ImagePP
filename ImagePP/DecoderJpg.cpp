@@ -43,8 +43,8 @@ Image* DecoderJpg::Read(HCStream & s)
 	if (buf[0] != '\xFF'||buf[1] != '\xD8')
 		return nullptr;
 	s.seek(0);
-	std::vector<char> arr(s.size());
-	s.serialize(&arr[0], s.size());
+	unsigned char * buftemp = new unsigned char[s.size()];
+	s.serialize(buftemp, s.size());
 
 	jpeg_decompress_struct cinfo;
 	jpeg_error_mgr jerr;
@@ -59,8 +59,8 @@ Image* DecoderJpg::Read(HCStream & s)
 	cinfo.src->skip_input_data = skip_input_data;
 	cinfo.src->resync_to_restart = jpeg_resync_to_restart;	// use default method
 	cinfo.src->term_source = term_source;
-	cinfo.src->bytes_in_buffer = s.size();// byte_array.size();
-	cinfo.src->next_input_byte = (const JOCTET * )&arr[0];// byte_array.buffer();
+	cinfo.src->bytes_in_buffer = s.size();
+	cinfo.src->next_input_byte = buftemp;// (const JOCTET *)&arr[0];// byte_array.buffer();
 
 	jpeg_read_header(&cinfo, TRUE);
 	jpeg_start_decompress(&cinfo);
@@ -73,7 +73,8 @@ Image* DecoderJpg::Read(HCStream & s)
 	uint8 * tmp_buffer = new uint8[cinfo.output_width * cinfo.output_height * cinfo.num_components];
 	uint8 * scanline = tmp_buffer;
 
-	while (cinfo.output_scanline < cinfo.output_height){
+	while (cinfo.output_scanline < cinfo.output_height)
+	{
 		int num_scanlines = jpeg_read_scanlines(&cinfo, &scanline, 1);
 		scanline += num_scanlines * cinfo.output_width * cinfo.num_components;
 	}
@@ -87,21 +88,25 @@ Image* DecoderJpg::Read(HCStream & s)
 	const int size = img->height() * img->width();
 	const uint8 * src = tmp_buffer;
 
-	if (cinfo.num_components == 3) {
+	if (cinfo.num_components == 3)
+	{
 		img->setFormat(Image::Format_RGB);
 		for (int i = 0; i < size; i++) {
 			*dst++ = Color32(src[0], src[1], src[2]);
 			src += 3;
 		}
 	}
-	else {
+	else
+	{
 		img->setFormat(Image::Format_ARGB);
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < size; i++)
+		{
 			*dst++ = Color32(*src, *src, *src, *src);
 			src++;
 		}
 	}
 	delete[] tmp_buffer;
+	delete[] buftemp;
 	jpeg_destroy_decompress(&cinfo);
 
 	return img.release();
