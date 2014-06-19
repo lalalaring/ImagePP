@@ -49,7 +49,7 @@ bool Image::load(const char * name)
 {
 	free();
 
-	shared_ptr<Image> img(DecoderPng::Read(HCStdInputStream(name)));
+	unique_ptr<Image> img(DecoderPng::Read(HCStdInputStream(name)));
 	if (img.get() == NULL)
 	{
 	

@@ -2,6 +2,7 @@
 #include "jpeglib.h"
 #include <memory>
 #include <vector>
+#include <array>
 static void init_source(j_decompress_ptr /*cinfo*/){
 }
 
@@ -37,12 +38,13 @@ static void term_source(j_decompress_ptr /*cinfo*/){
 
 Image* DecoderJpg::Read(HCStream & s)
 {
-	//nvCheck(!s.isError());
-
-	// Read the entire file.
-
-	unsigned char* buff = new unsigned char[s.size()];
-	s.serialize(buff, s.size());
+	char buf[2] = { 0 };
+	s.serialize(buf, 2);
+	if (buf[0] != '\xFF'||buf[1] != '\xD8')
+		return nullptr;
+	s.seek(0);
+	std::vector<char> arr(s.size());
+	s.serialize(&arr[0], s.size());
 
 	jpeg_decompress_struct cinfo;
 	jpeg_error_mgr jerr;
@@ -58,7 +60,7 @@ Image* DecoderJpg::Read(HCStream & s)
 	cinfo.src->resync_to_restart = jpeg_resync_to_restart;	// use default method
 	cinfo.src->term_source = term_source;
 	cinfo.src->bytes_in_buffer = s.size();// byte_array.size();
-	cinfo.src->next_input_byte = buff;// byte_array.buffer();
+	cinfo.src->next_input_byte = (const JOCTET * )&arr[0];// byte_array.buffer();
 
 	jpeg_read_header(&cinfo, TRUE);
 	jpeg_start_decompress(&cinfo);
@@ -78,7 +80,7 @@ Image* DecoderJpg::Read(HCStream & s)
 
 	jpeg_finish_decompress(&cinfo);
 
-	auto_ptr<Image>  img(new Image());
+	unique_ptr<Image>  img(new Image());
 	img->allocate(cinfo.output_width, cinfo.output_height);
 
 	Color32 * dst = img->pixels();
@@ -99,7 +101,6 @@ Image* DecoderJpg::Read(HCStream & s)
 			src++;
 		}
 	}
-
 	delete[] tmp_buffer;
 	jpeg_destroy_decompress(&cinfo);
 

@@ -22,13 +22,15 @@ Image* DecoderTga::Read(HCStream & s)
 	bool rgb = false;
 	bool grey = false;
 
-	switch (tga.image_type) {
+	switch (tga.image_type)
+	{
 	case TGA_TYPE_RLE_INDEXED:
 		rle = true;
 		// no break is intended!
 	case TGA_TYPE_INDEXED:
-		if (tga.colormap_type != 1 || tga.colormap_size != 24 || tga.colormap_length > 256) {
-			//nvDebug("*** loadTGA: Error, only 24bit paletted images are supported.\n");
+		if (tga.colormap_type != 1 || tga.colormap_size != 24 || tga.colormap_length > 256)
+		{
+			//"*** loadTGA: Error, only 24bit paletted images are supported.\n");
 			return NULL;
 		}
 		pal = true;
@@ -49,7 +51,6 @@ Image* DecoderTga::Read(HCStream & s)
 		break;
 
 	default:
-		//nvDebug("*** loadTGA: Error, unsupported image type.\n");
 		return NULL;
 	}
 
@@ -104,7 +105,7 @@ Image* DecoderTga::Read(HCStream & s)
 	}
 
 	// Allocate image.
-	auto_ptr<Image> img(new Image());
+	unique_ptr<Image> img(new Image());
 	img->allocate(tga.width, tga.height);
 
 	int lstep;

@@ -22,6 +22,7 @@
     <ClInclude Include="DecoderTiff.h">
       <Filter>Decoder</Filter>
     </ClInclude>
+    <ClInclude Include="FormatCheck.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImagePP.cpp" />
@@ -39,5 +40,6 @@
     <ClCompile Include="DecoderTiff.cpp">
       <Filter>Decoder</Filter>
     </ClCompile>
+    <ClCompile Include="FormatCheck.cpp" />
   </ItemGroup>
 </Project>

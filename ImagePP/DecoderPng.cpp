@@ -105,7 +105,7 @@ png_read_update_info(png_ptr, info_ptr);
 
 png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, NULL, NULL);
 
-auto_ptr<Image> img(new Image());
+unique_ptr<Image> img(new Image());
 img->allocate(width, height);
 
 // Set internal format flags.
